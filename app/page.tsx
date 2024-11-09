@@ -1,4 +1,6 @@
 import Image from "next/image";
+import ProgressDemo from "@/components/ProgressDemo" // Import ProgressDemo componen
+
 
 export default function Home() {
   return (
@@ -19,11 +21,14 @@ export default function Home() {
         >
           Data Table Testing
         </a>
+        
       </header>
 
       
-      <main className="flex flex-col gap-8 row-start-2 items-center">
+      <main className="flex flex-col gap-8 row-start-2 items-center">    
         <a className="text-4xl font-bold">🚧 Project Belvedere Is Under Construction 🚧</a>
+        <ProgressDemo />
+
         <div className="flex gap-4 items-center justify-center flex-col sm:flex-row">
           <a
             className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
