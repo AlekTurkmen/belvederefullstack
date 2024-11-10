@@ -1,1 +1,3 @@
-//all of this I'm yet to implement
+export default function DashboardPage() {
+    return <div>Welcome to the Dashboard!</div>;
+  }
