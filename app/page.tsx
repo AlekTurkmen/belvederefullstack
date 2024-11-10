@@ -13,13 +13,19 @@ export default function Home() {
         >
           Home
         </a>
-
         <a
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
           href="/user-data"
           rel="noopener noreferrer"
         >
           User Data Testing
+        </a>
+        <a
+          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+          href="/login"
+          rel="noopener noreferrer"
+        >
+          Sign In
         </a>
         <ModeToggle />
       </header>

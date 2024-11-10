@@ -13,6 +13,16 @@ import { Label } from "@/components/ui/label"
 
 export function LoginForm() {
   return (
+    <div className="grid grid-rows-[0px_1fr_0px] items-center justify-items-left min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+    <header className="row-start-1 gap-6 flex-wrap items-center justify-left">  
+    <a
+          className="items-center gap-2 hover:underline hover:underline-offset-4"
+          href="/"
+          rel="noopener noreferrer"
+        >
+          ← Back To Home
+        </a>
+    </header>
     <Card className="mx-auto max-w-sm">
       <CardHeader>
         <CardTitle className="text-2xl">Login</CardTitle>
@@ -55,5 +65,6 @@ export function LoginForm() {
         </div>
       </CardContent>
     </Card>
+    </div>
   )
 }
