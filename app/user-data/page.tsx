@@ -5,6 +5,8 @@
 import { UserData, columns } from "./columns"
 import { DataTable } from "./data-table"
 import * as React from "react"
+import {ModeToggle} from "@/components/ModeToggle"; // Import ModeToggle component
+
 
 // Async function to fetch data
 async function getData(): Promise<UserData[]> {
@@ -83,6 +85,7 @@ export default function Home() {
         >
           User Data Testing
         </a>
+        <ModeToggle />
       </header>
 
       <main>
