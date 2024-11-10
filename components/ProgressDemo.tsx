@@ -8,7 +8,7 @@ export function ProgressDemo() {
 
   React.useEffect(() => {
     const duration = 3000 // Total duration in milliseconds
-    const targetValue = 14.29
+    const targetValue = 3/21 * 100
 
     const smootherstep = (t: number) => 6 * t ** 5 - 15 * t ** 4 + 10 * t ** 3
 
