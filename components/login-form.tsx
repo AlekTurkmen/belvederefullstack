@@ -9,10 +9,15 @@ import { supabase } from "@/lib/supabaseClient"; // Adjust the path to your clie
 
 export function LoginForm() {
   async function handleGoogleLogin() {
+    const redirectToUrl =
+      process.env.NODE_ENV === 'development'
+        ? process.env.NEXT_PUBLIC_REDIRECT_URL_DEV
+        : process.env.NEXT_PUBLIC_REDIRECT_URL_PROD;
+  
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: "http://belvedere.alekturkmen.com", // Adjust to your deployment callback URL
+        redirectTo: redirectToUrl,
       },
     });
     if (error) console.error('Error logging in with Google:', error.message);

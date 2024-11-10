@@ -1,4 +1,3 @@
-import Image from "next/image";
 import ProgressDemo from "@/components/ProgressDemo" // Import ProgressDemo componen
 import {ModeToggle} from "@/components/ModeToggle"; // Import ModeToggle component
 
