@@ -62,7 +62,7 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Copyright © Alek Turkmen (test)
+          Copyright © Alek Turkmen
         </a>
       </footer>
     </div>

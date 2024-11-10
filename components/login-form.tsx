@@ -12,7 +12,7 @@ export function LoginForm() {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: process.env.NEXT_PUBLIC_REDIRECT_URL, // Adjust to your deployment callback URL
+        redirectTo: "http://belvedere.alekturkmen.com", // Adjust to your deployment callback URL
       },
     });
     if (error) console.error('Error logging in with Google:', error.message);
