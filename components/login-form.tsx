@@ -6,6 +6,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { supabase } from "@/lib/supabaseClient"; // Adjust the path to your client file
+import { FcGoogle } from 'react-icons/fc'; // Import Google icon
+import { FaGithub, FaLinkedin } from 'react-icons/fa'; // Import Github and LinkedIn icons
 
 export function LoginForm() {
   async function handleGoogleLogin() {
@@ -38,12 +40,12 @@ export function LoginForm() {
         <CardHeader>
           <CardTitle className="text-2xl">Login</CardTitle>
           <CardDescription>
-            Enter your email below to login to your account
+            Use one of the following methods to log in.
           </CardDescription>
         </CardHeader>
         <CardContent>
           <div className="grid gap-4">
-            <div className="grid gap-2">
+            {/* <div className="grid gap-2">
               <Label htmlFor="email">Email</Label>
               <Input
                 id="email"
@@ -57,18 +59,46 @@ export function LoginForm() {
                 <Label htmlFor="password">Password</Label>
               </div>
               <Input id="password" type="password" required />
-            </div>
-            <Button type="submit" className="w-full">
+            </div> */}
+            {/* <Button type="submit" className="w-full">
               Login
+            </Button> */}
+            <Button variant="outline" className="w-full flex items-center justify-center space-x-0" onClick={handleGoogleLogin}>
+              <FcGoogle size={20} />
+              <span>Continue with Google</span>
             </Button>
-            <Button variant="outline" className="w-full" onClick={handleGoogleLogin}>
-              Login with Google
+
+            <Button variant="outline" className="w-full flex items-center justify-center space-x-0">
+              <FaGithub size={20} />
+              <span>Continue with GitHub (Coming Soon)</span>
+            </Button>
+
+            <Button variant="outline" className="w-full flex items-center justify-center space-x-0">
+              <div style={{ position: 'relative', width: '20px', height: '20px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
+                {/* White box behind the LinkedIn icon */}
+                <span
+                  style={{
+                    backgroundColor: 'white',
+                    width: '12px',
+                    height: '12px',
+                    position: 'absolute',
+                    zIndex: 1,
+                  }}
+                />
+                {/* LinkedIn icon on top of the white box */}
+                <FaLinkedin size={20} style={{ color: '#0077b5', position: 'relative', zIndex: 2 }} />
+              </div>
+              <span>Continue with LinkedIn (Coming Soon)</span>
             </Button>
           </div>
           <div className="mt-4 text-center text-sm">
-            Don&apos;t have an account?{" "}
+            By signing up you agree to our{" "}
             <Link href="#" className="underline">
-              Sign up
+              Terms of Service 
+            </Link>
+            {" "}and{" "}
+            <Link href="#" className="underline">
+              Privacy Policy
             </Link>
           </div>
         </CardContent>
