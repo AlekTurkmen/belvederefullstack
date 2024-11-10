@@ -1,3 +1,5 @@
+//This doesn't pull data from the Supabase database, but instead uses a mock data source to display a table of user data.
+
 "use client"
 
 import { UserData, columns } from "./columns"

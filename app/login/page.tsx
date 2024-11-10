@@ -1,3 +1,6 @@
+//Where all of the failed authentication redirects go to
+//Need to add the login page components to this later
+
 import { login, signup } from './actions'
 
 export default function LoginPage() {

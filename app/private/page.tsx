@@ -1,3 +1,5 @@
+//This redirects to the login page if the user is not authenticated.
+
 import { redirect } from 'next/navigation'
 
 import { createClient } from '@/utils/supabase/server'
