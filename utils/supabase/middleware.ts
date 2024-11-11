@@ -35,6 +35,23 @@ export async function updateSession(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser()
 
+  console.log("Middleware User:", user);
+
+  const { data: sessionData } = await supabase.auth.getSession();
+  
+  console.log("Middleware Session from getSession:", sessionData);
+
+  // Extra log to see the complete request headers and cookies
+  console.log("Request Headers:", request.headers);
+  console.log("Request Cookies:", request.cookies.getAll());
+
+  console.log("User:", user); // Log to check if the user is authenticated
+
+  // Log each condition to see which one is not being met
+  console.log("Condition !user:", !user);
+  console.log("Condition !request.nextUrl.pathname.startsWith('/login'):", !request.nextUrl.pathname.startsWith('/login'));
+  console.log("Condition !request.nextUrl.pathname.startsWith('/auth'):", !request.nextUrl.pathname.startsWith('/auth'));
+
   if (
     !user &&
     !request.nextUrl.pathname.startsWith('/login') &&

@@ -15,5 +15,6 @@ export const config = {
      * Feel free to modify this pattern to include more paths.
      */
     '/dashboard/:path*', // Protects `/dashboard` and its nested paths
+    '/auth/:path*',
   ],
 }

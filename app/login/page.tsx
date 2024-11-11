@@ -1,7 +1,5 @@
-//Where all of the failed authentication redirects go to
-//Need to add the login page components to this later
+//login, and signup aren't being used
 
-import { login, signup } from './actions'
 import { LoginForm } from "@/components/login-form"
 
 export default function LoginPage() {

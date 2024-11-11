@@ -6,10 +6,13 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { supabase } from "@/lib/supabaseClient"; // Adjust the path to your client file
-import { FcGoogle } from 'react-icons/fc'; // Import Google icon
-import { FaGithub, FaLinkedin } from 'react-icons/fa'; // Import Github and LinkedIn icons
+import { FcGoogle } from 'react-icons/fc';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { useRouter } from 'next/navigation'; // Import useRouter
 
 export function LoginForm() {
+  const router = useRouter(); // Initialize router for navigation
+
   async function handleGoogleLogin() {
     const redirectToUrl =
       process.env.NODE_ENV === 'development'
@@ -22,7 +25,19 @@ export function LoginForm() {
         redirectTo: redirectToUrl,
       },
     });
-    if (error) console.error('Error logging in with Google:', error.message);
+  
+    if (error) {
+      console.error('Error logging in with Google:', error.message);
+    } else {
+      // Wait and check if the session is established
+      const { data } = await supabase.auth.getSession();
+      if (data.session) {
+        console.log("Session established:", data.session);
+        router.push('/dashboard'); // Redirect on success
+      } else {
+        console.error("Session not established on client.");
+      }
+    }
   }
 
   return (
@@ -45,24 +60,6 @@ export function LoginForm() {
         </CardHeader>
         <CardContent>
           <div className="grid gap-4">
-            {/* <div className="grid gap-2">
-              <Label htmlFor="email">Email</Label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="petercooper@gmail.com"
-                required
-              />
-            </div>
-            <div className="grid gap-2">
-              <div className="flex items-center">
-                <Label htmlFor="password">Password</Label>
-              </div>
-              <Input id="password" type="password" required />
-            </div> */}
-            {/* <Button type="submit" className="w-full">
-              Login
-            </Button> */}
             <Button variant="outline" className="w-full flex items-center justify-center space-x-0" onClick={handleGoogleLogin}>
               <FcGoogle size={20} />
               <span>Continue with Google</span>
@@ -75,7 +72,6 @@ export function LoginForm() {
 
             <Button variant="outline" className="w-full flex items-center justify-center space-x-0">
               <div style={{ position: 'relative', width: '20px', height: '20px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
-                {/* White box behind the LinkedIn icon */}
                 <span
                   style={{
                     backgroundColor: 'white',
@@ -85,7 +81,6 @@ export function LoginForm() {
                     zIndex: 1,
                   }}
                 />
-                {/* LinkedIn icon on top of the white box */}
                 <FaLinkedin size={20} style={{ color: '#0077b5', position: 'relative', zIndex: 2 }} />
               </div>
               <span>Continue with LinkedIn (Coming Soon)</span>
