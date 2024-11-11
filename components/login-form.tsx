@@ -3,43 +3,26 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { supabase } from "@/lib/supabaseClient"; // Adjust the path to your client file
 import { FcGoogle } from 'react-icons/fc';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { useRouter } from 'next/navigation'; // Import useRouter
 
 export function LoginForm() {
-  const router = useRouter(); // Initialize router for navigation
+  const router = useRouter();
 
   async function handleGoogleLogin() {
-    const redirectToUrl =
-      process.env.NODE_ENV === 'development'
-        ? process.env.NEXT_PUBLIC_REDIRECT_URL_DEV
-        : process.env.NEXT_PUBLIC_REDIRECT_URL_PROD;
-  
-    const { error } = await supabase.auth.signInWithOAuth({
+    const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
-      options: {
-        redirectTo: redirectToUrl,
-      },
     });
-  
+
     if (error) {
       console.error('Error logging in with Google:', error.message);
     } else {
-      // Wait and check if the session is established
-      const { data } = await supabase.auth.getSession();
-      if (data.session) {
-        console.log("Session established:", data.session);
-        router.push('/dashboard'); // Redirect on success
-      } else {
-        console.error("Session not established on client.");
-      }
+      // Redirect is handled automatically
+      console.log('Redirecting to Google OAuth...');
     }
   }
-
   return (
     <div className="grid grid-rows-[0px_1fr_0px] items-center justify-items-left min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <header className="row-start-1 gap-6 flex-wrap items-center justify-left">  

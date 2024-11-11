@@ -1,16 +1,23 @@
+// app/dashboard/page.tsx
+import { createServerSupabaseClient } from '@/lib/supabaseServerClient';
 import { redirect } from 'next/navigation';
-import { createClient } from '@/utils/supabase/server';
 
 export default async function DashboardPage() {
-  const supabase = await createClient();
+  const supabase = createServerSupabaseClient();
 
-  // Check if there is a logged-in user
-  // const { data, error } = await supabase.auth.getUser();
-  // if (error || !data?.user) {
-  //   redirect('/login'); // Redirect to login page if not authenticated
-  // }
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
 
-  // {data.user.email}
+  if (!session) {
+    // Redirect to login page if not authenticated
+    redirect('/login');
+  }
 
-  return <div>Welcome to the Dashboard, !</div>;
+  // Render the dashboard content
+  return (
+    <div>
+      <h1>Welcome to your dashboard, {session.user.email}!</h1>
+    </div>
+  );
 }
